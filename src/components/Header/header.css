@@ -1,0 +1,43 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background: rgb(119,118,120);
+    background: radial-gradient(circle, rgba(119,118,120,1) 0%, rgba(58,57,58,1) 100%);
+}
+.logoLink{
+    margin-left: -10%;
+}
+.logoLink > img{
+    width: 160px;
+}
+.formContainer{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.homePageForm{
+    width: 50%;
+    display: flex;
+    align-items: center;
+    margin-top: 1%;
+}
+.homePageForm > input{
+    width: 60%;
+    padding: 1% 2%;
+    font-size: 20px;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+}
+.homePageForm > button{
+    background-color: transparent;
+    border: none;
+    font-size: 24px;
+    font-weight: bolder;
+    color: #d0cece;
+}
+.homePageForm > button:hover{
+    color: #fcfcfc;
+    cursor: pointer;
+}
