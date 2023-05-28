@@ -15,14 +15,11 @@ const CurrentWeatherPageContent = () => {
     const icon = current?.weather?.map(item => item.icon)
     const weather = current?.weather?.map(item => item.main)
 
-    console.log(getWeather)
 
     useEffect(() => {
         dispatch(fetchGetWeather(inputValue))
         dispatch(resetInput())
     }, [])
-
-    //xndir ka
 
     return (
         <div className="contentContainer">
