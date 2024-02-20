@@ -6,15 +6,10 @@ export const headerInputSlice = createSlice({
     reducers: {
         getInputValue(state, {payload}){
             return payload
-        },
-        resetInput(state){
-            return ""
         }
     }
 })
 
-export const selectHeaderInputValue = state => state.headerInputValue
-
-export const {getInputValue, resetInput} =headerInputSlice.actions
+export const {getInputValue} =headerInputSlice.actions
 
 export const headerInputReducer = headerInputSlice.reducer

@@ -4,24 +4,25 @@ import {fetchGetWeather} from "./getWeatherApi";
 export const getWeatherSlice = createSlice({
     name: "getWeather",
     initialState: {
-        current: {},
-        fiveDays: {}
+        current: null,
+        fiveDays: null,
+        isLoading: false,
     },
     reducers: {},
-    extraReducers: {
-        [fetchGetWeather.pending]:(state) => {
-            console.log("pending...")
-        },
-        [fetchGetWeather.fulfilled]:(state, {payload}) => {
-            state.current = payload.current
-            state.fiveDays = payload.fiveDays
-        },
-        [fetchGetWeather.rejected]:(state) => {
-            console.log("weather error")
-        }
+    extraReducers: (builder) => {
+        builder
+            .addCase(fetchGetWeather.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(fetchGetWeather.fulfilled, (state, {payload}) => {
+                state.current = payload.current
+                state.fiveDays = payload.fiveDays
+                state.isLoading = false
+            })
+            .addCase(fetchGetWeather.rejected, (state) => {
+                console.log("weather error")
+            })
     }
 })
-
-export const selectGetWeather = state => state.getWeather
 
 export const getWeatherReducer = getWeatherSlice.reducer

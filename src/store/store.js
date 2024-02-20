@@ -5,7 +5,7 @@ import {getWeatherReducer} from "./slices/getWeatherSlice/getWeatherSlice";
 export const store = configureStore({
     reducer: {
         headerInputValue: headerInputReducer,
-        getWeather: getWeatherReducer,
+        weather: getWeatherReducer,
     },
     middleware:(getDefaultMiddleware) =>[...getDefaultMiddleware(),]
 })

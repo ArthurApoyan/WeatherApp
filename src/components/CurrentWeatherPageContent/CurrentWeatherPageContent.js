@@ -1,25 +1,13 @@
-import React, {useEffect} from 'react';
-import {useDispatch, useSelector} from "react-redux";
-import {selectGetWeather} from "../../store/slices/getWeatherSlice/getWeatherSlice";
-import {fetchGetWeather} from "../../store/slices/getWeatherSlice/getWeatherApi";
-import {resetInput, selectHeaderInputValue} from "../../store/slices/headerInputSlice/headerInputSlice";
+import React from 'react';
+import {useSelector} from "react-redux";
 
 import "./currentWeatherPageContent.css";
 
 const CurrentWeatherPageContent = () => {
 
-    const dispatch = useDispatch();
-    const inputValue = useSelector(selectHeaderInputValue)
-    const getWeather = useSelector(selectGetWeather);
-    const current = getWeather?.current
+    const {current} = useSelector(state => state.weather);
     const icon = current?.weather?.map(item => item.icon)
     const weather = current?.weather?.map(item => item.main)
-
-
-    useEffect(() => {
-        dispatch(fetchGetWeather(inputValue))
-        dispatch(resetInput())
-    }, [])
 
     return (
         <div className="contentContainer">

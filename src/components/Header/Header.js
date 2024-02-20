@@ -1,22 +1,21 @@
 import React from 'react';
-import HeaderNavBar from "../HeaderNavBar/HeaderNavBar";
-import {Link} from "react-router-dom";
-import logo from "../../utils/images/weatherAppLogo_1.png"
 import {useDispatch, useSelector} from "react-redux";
-import {getInputValue, resetInput, selectHeaderInputValue} from "../../store/slices/headerInputSlice/headerInputSlice";
+import {Link} from "react-router-dom";
+import {getInputValue} from "../../store/slices/headerInputSlice/headerInputSlice";
 import {fetchGetWeather} from "../../store/slices/getWeatherSlice/getWeatherApi";
+import HeaderNavBar from "../HeaderNavBar/HeaderNavBar";
+import logo from "../../utils/images/weatherAppLogo_1.png"
 
 import "./header.css";
 
 const Header = () => {
 
     const dispatch = useDispatch();
-    const inputValue = useSelector(selectHeaderInputValue);
+    const inputValue = useSelector(state => state.headerInputValue);
 
     const handleSubmit = (e) => {
         e.preventDefault()
         dispatch(fetchGetWeather(inputValue))
-        dispatch(resetInput())
     }
 
     return (

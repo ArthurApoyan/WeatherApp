@@ -6,6 +6,8 @@ export const fetchGetWeather = createAsyncThunk(
             async function(inputValue){
 
                 const coordinateResult = await fetch(CITY_TO_COORDINATE_URL(inputValue))
+                console.log(coordinateResult, "////////////");
+
                 const coordinateJson = await coordinateResult.json()
                 let data = [
                     ...coordinateJson?.map((item) => ({

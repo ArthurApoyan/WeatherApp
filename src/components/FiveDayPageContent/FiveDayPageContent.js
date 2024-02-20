@@ -1,31 +1,27 @@
-import React, {useEffect} from 'react';
-
-import {useDispatch, useSelector} from "react-redux";
-import {selectGetWeather} from "../../store/slices/getWeatherSlice/getWeatherSlice";
-import {fetchGetWeather} from "../../store/slices/getWeatherSlice/getWeatherApi";
-import {resetInput, selectHeaderInputValue} from "../../store/slices/headerInputSlice/headerInputSlice";
+import React, {useRef} from 'react';
+import {useSelector} from "react-redux";
 
 import "./fiveDayPageContent.css";
 
 
 const FiveDayPageContent = () => {
 
-    const dispatch = useDispatch()
-    const inputValue = useSelector(selectHeaderInputValue)
-    const getWeather = useSelector(selectGetWeather)
-    const fiveDayForecast = getWeather.fiveDays
+    const {fiveDays} = useSelector(state => state.weather)
+    const scrollableDivRef = useRef(null);
 
-    useEffect(() => {
-        dispatch(fetchGetWeather(inputValue))
-        dispatch(resetInput())
-    }, [])
+    const handleWheelScroll = (event) => {
+        if (event.deltaY !== 0) {
+            scrollableDivRef.current.scrollLeft += event.deltaY;
+            event.preventDefault();
+        }
+    }
 
     return (
         <div className="fiveDayContentContainer">
-            <h2>{fiveDayForecast?.city?.name}</h2>
-            <div className="allDaysContainer">
+            <h2>{fiveDays?.city?.name}</h2>
+            <div className="allDaysContainer" ref={scrollableDivRef} onWheel={handleWheelScroll}>
                 {
-                    fiveDayForecast?.list?.map((item) => {
+                    fiveDays?.list?.map((item) => {
                         return (
                             <div key={item.dt} className="oneDayDiv">
                                 <p>{item.dt_txt}</p>
